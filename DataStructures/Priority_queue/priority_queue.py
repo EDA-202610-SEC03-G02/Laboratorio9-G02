@@ -28,11 +28,15 @@ def new_heap(is_min_pq=True):
     }
     
 def swim(my_heap, pos):
-    j=pos
-    while (j//2)>1:
-        if priority(my_heap, my_heap["elements"][j//2], my_heap["elements"][j]):
-            al.exchange(my_heap["elements"], j//2, j)
-            pos=j//2
+    j = pos
+    while j // 2 >= 1:
+        padre = my_heap["elements"][j // 2]
+        hijo  = my_heap["elements"][j]
+        if not priority(my_heap, padre, hijo):  # padre NO tiene prioridad → subir hijo
+            al.exchange(my_heap["elements"], j // 2, j)
+            j = j // 2
+        else:
+            break
     return my_heap
 
 def sink(my_heap, pos):
