@@ -171,7 +171,6 @@ def get_next_route(analyzer):
     # next_route = pq.min(analyzer['pq'])
     # pq.delMin(analyzer['pq'])
     # return next_route
-    next_route = pq.min(analyzer['pq'])
-    pq.delMin(analyzer['pq'])
-    return next_route
-
+    if pq.is_empty(analyzer['routes_pq']):
+        return None
+    return pq.remove(analyzer['routes_pq'])
